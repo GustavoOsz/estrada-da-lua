@@ -1,0 +1,43 @@
+ESTRADA DA LUA V4 — RESUMO
+
+1. GUIAS À PRONTA ENTREGA
+- Nova página pública: guias-prontas.php
+- Nova página de reserva/compra: comprar-guia.php
+- Produtos ganharam: tipo_produto, pronta_entrega e custo_unitario
+- Pedidos de pronta entrega aparecem no acompanhamento e no painel
+
+2. EXPERIÊNCIA VISUAL
+- Logo removida das áreas públicas onde o fundo prejudicava a leitura
+- Home usa composição abstrata de lua/fio quando não houver foto
+- Baralho Cigano ganhou um baralho animado com carta visual aleatória
+- Animações suaves de entrada e hover foram adicionadas
+- Respeita prefers-reduced-motion
+
+3. HOME / COPY
+- “Sua guia, seu caminho” passou a focar experiência, cuidado, qualidade e acompanhamento
+- Preço aparece apenas como justo/transparente, sem ser a ideia central
+- Nova seção de guias prontas
+
+4. PERFIL DO CLIENTE
+- conta.php / perfil.php / sair-cliente.php
+- Pedidos e leituras podem ser ligados ao cliente
+- Preferências de conteúdo e consentimento de marketing
+- Clientes podem anexar pedidos antigos ao perfil usando código + contato
+
+5. CRM / RETENÇÃO
+- Admin > Clientes & perfis
+- Interesses, pedidos, leituras e consentimento de marketing
+- Admin pode exportar CSV apenas de contatos que autorizaram marketing
+
+6. CONTEÚDO
+- Admin > Conteúdo & narrativa
+- Home editável com prévia ao vivo
+- Base interna de Blog e Podcast com rascunhos e capa
+- Links públicos “Caderno da Lua” e “Vozes da Estrada” mostram popup de “em produção”
+- Produtos, História e Trabalhos agora têm preview visual no ADM
+
+7. INSTALAÇÃO
+- Substitua os arquivos da V3 pela V4
+- Abra /admin/setup.php uma vez
+- Clique em Atualizar banco / redefinir acesso
+- O banco continua sendo estrada_da_lua e os dados existentes não são apagados

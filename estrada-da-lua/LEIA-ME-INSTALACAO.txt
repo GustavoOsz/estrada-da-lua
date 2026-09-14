@@ -1,0 +1,80 @@
+ESTRADA DA LUA — PACOTE PARA OUTRO COMPUTADOR
+Base: V7.1 (22/08/2026). Pacote organizado em 02/09/2026.
+
+O QUE ESTÁ INCLUÍDO
+Todos os arquivos do ZIP V7.1 recuperado: PHP, CSS, JavaScript, logo,
+painel administrativo, configurações, migrações e pastas de uploads.
+Foi acrescentado database/estrada_da_lua_instalacao_completa.sql, com
+20 tabelas e configurações iniciais para uma instalação nova.
+Os arquivos PHP da V7.1 foram preservados, sem alteração.
+
+ATENÇÃO AOS DADOS
+Este pacote não é uma cópia do banco que está no seu computador antigo.
+Não contém seus produtos, clientes, pedidos, senhas ou fotos enviadas depois
+de baixar o projeto. As pastas uploads do ZIP recuperado estavam vazias.
+O SQL original das tabelas-base não estava nos arquivos recuperados;
+essas tabelas foram reconstruídas a partir das consultas PHP. As demais
+tabelas e campos vêm de config/schema.php da V7.1.
+Se você alterou códigos no computador antigo, copie também essa pasta atual.
+
+INSTALAÇÃO NOVA — WAMP OU XAMPP NO WINDOWS
+1. Instale WampServer ou XAMPP com PHP 8.0 ou superior e MySQL/MariaDB.
+   Habilite PDO MySQL, fileinfo, mbstring e sessões no PHP.
+2. Extraia a pasta estrada-da-lua em:
+   WampServer: C:\wamp64\www\estrada-da-lua
+   XAMPP:      C:\xampp\htdocs\estrada-da-lua
+   Verifique que index.php está diretamente dentro dessa pasta.
+3. Inicie Apache e MySQL/MariaDB.
+4. Abra http://localhost/phpmyadmin
+   Vá à aba Importar, selecione o arquivo:
+   estrada-da-lua/database/estrada_da_lua_instalacao_completa.sql
+   e execute a importação. Ele cria o banco estrada_da_lua e as tabelas.
+   Não use upgrade_v3.sql, upgrade_v5.sql ou HOTFIX como instalação inicial.
+5. Confira estrada-da-lua/config/database.php:
+   $host = 'localhost';
+   $db   = 'estrada_da_lua';
+   $user = 'root';
+   $pass = '';
+   Se seu MySQL tiver usuário, senha ou porta diferentes, ajuste a conexão.
+   Para porta diferente, adicione port=NUMERO; ao DSN após host={$host};.
+6. Acesse http://localhost/estrada-da-lua/admin/setup.php
+   Escolha seu nome, e-mail e uma senha própria, substituindo a senha
+   pré-preenchida. Clique em Atualizar banco / redefinir acesso.
+7. Site: http://localhost/estrada-da-lua/
+   Painel: http://localhost/estrada-da-lua/admin/login.php
+   Entre com o e-mail e a senha que você definiu no passo 6.
+
+PARA LEVAR OS CADASTROS DO COMPUTADOR ANTIGO
+1. No computador antigo, abra phpMyAdmin e selecione estrada_da_lua.
+2. Clique em Exportar. Exporte TODAS as tabelas, estrutura e dados, em SQL.
+3. Copie também a pasta completa do site, incluindo uploads e img.
+4. No computador novo, coloque a pasta do site no www ou htdocs.
+5. Crie o banco estrada_da_lua no phpMyAdmin (utf8mb4_unicode_ci) e importe
+   o SQL exportado do computador antigo. Use um banco de destino vazio.
+   Nessa opção, não importe o SQL de instalação nova deste pacote.
+6. Ajuste config/database.php e abra admin/setup.php no computador novo
+   para aplicar campos que faltarem. Use seu e-mail administrativo existente
+   e a senha desejada se precisar redefinir o acesso.
+7. Confira produtos, pedidos e imagens. Guarde o backup antigo até terminar.
+
+ERROS MAIS COMUNS
+- Não foi possível conectar ao banco: inicie MySQL, importe o SQL e confira
+  usuário/senha/porta em config/database.php.
+- Table doesn't exist: confirme o SQL completo e o banco estrada_da_lua.
+- Página 404: confira a pasta e se Apache está iniciado.
+- Código PHP aparecendo como texto: abra pelo endereço http://localhost,
+  com Apache e PHP funcionando; não abra o arquivo por duplo clique.
+- Falha em fotos/anexos: confira fileinfo, permissão de escrita em uploads,
+  upload_max_filesize e post_max_size no php.ini.
+- Setup responde 403: abra pelo localhost no próprio computador novo.
+
+CONFERÊNCIA DESTE PACOTE
+Integridade do ZIP verificada; arquivos originais comparados por hash.
+SQL conferido contra tabelas, campos de migração e INSERTs explícitos do PHP.
+JavaScript verificado com node --check.
+O ambiente usado para preparar o pacote não possui PHP/MySQL disponíveis;
+a importação real do SQL e a execução do site precisam ser confirmadas
+no Wamp/XAMPP. Este pacote não representa um teste funcional completo.
+
+O README.txt e os CHANGELOGs antigos foram mantidos para referência.
+Para instalar do zero ou transferir de computador, siga este LEIA-ME.

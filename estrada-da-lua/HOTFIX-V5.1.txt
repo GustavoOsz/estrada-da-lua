@@ -1,0 +1,21 @@
+ESTRADA DA LUA — HOTFIX V5.1
+
+Problema corrigido:
+- Fatal Error PDOException: Unknown column 'origem' in feedbacks.
+
+Causa:
+- Em bancos já existentes, CREATE TABLE IF NOT EXISTS não adicionava as novas colunas da tabela feedbacks.
+
+Correções:
+1. config/schema.php agora adiciona explicitamente as colunas faltantes em feedbacks.
+2. getFeedbacks() foi tornado tolerante a bancos desatualizados: feedbacks nunca mais derrubam o site inteiro.
+3. O marcador interno da migração só é concluído depois que todas as etapas terminam com sucesso.
+4. Incluído database/HOTFIX-v5.1-feedbacks.sql para correção manual opcional.
+
+COMO ATUALIZAR:
+- Substitua os arquivos pela V5.1.
+- Acesse http://localhost/SUA-PASTA/admin/setup.php uma vez.
+- Clique em Atualizar banco / redefinir acesso.
+- Depois recarregue o site.
+
+Nenhum pedido, cliente, produto, feedback ou venda é apagado.

@@ -1,0 +1,12 @@
+ESTRADA DA LUA — V7.1
+
+Refinamento do efeito typing:
+- removido o typing automático de títulos, subtítulos, kickers e display-title;
+- mantido apenas em pontos de assinatura da experiência;
+- Home: permanece em “A gente carrega.”;
+- Baralho Cigano: permanece em “Pedem espaço.”;
+- removido typing da nota do baralho e da frase intermediária;
+- significado das cartas agora aparece inteiro no modal, sem digitação;
+- demais elementos continuam usando animações suaves de entrada/hover.
+
+Objetivo: devolver hierarquia ao efeito e diminuir poluição visual.

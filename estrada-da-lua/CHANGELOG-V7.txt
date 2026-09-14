@@ -1,0 +1,46 @@
+ESTRADA DA LUA — V7
+
+1. FEEDBACKS / COMPATIBILIDADE DE BANCO
+- Corrigida a incompatibilidade com tabelas antigas de feedbacks que não possuíam nome_cliente, texto ou origem.
+- A migração agora adiciona os campos novos e tenta reaproveitar dados de colunas legadas como nome, cliente, feedback, mensagem, comentário, depoimento, relato e descrição.
+- O cadastro de feedback usa um insert compatível com schemas antigos para evitar novos Fatal Errors após uma migração parcial.
+- Formulário do ADM e formulário público têm validação de servidor e mensagens visuais.
+
+2. ADMIN / BARRA LATERAL
+- Sidebar do desktop agora fica fixa do topo ao fim da viewport e acompanha toda a navegação.
+- Navegação recebeu estado ativo, melhor hierarquia, ícones e acabamento visual.
+- Cards, tabelas, inputs, botões e formulários do ADM foram refinados.
+
+3. PÁGINAS & TEXTOS
+- Conteúdo editável reorganizado por tela em Admin > Páginas & textos.
+- Áreas: Página inicial, História & memórias, Loja, Pronta entrega, Baralho Cigano, Perfil & conta, Atendimento e Guia personalizada.
+- Cada tela possui sua própria lista de campos e uma prévia integrada em iframe.
+- Campos marcados na página real são atualizados na prévia enquanto o administrador digita.
+- Caderno & Podcast foi separado em Admin > Caderno & Podcast para preservar o editor editorial.
+
+4. CHAT / MÍDIA POR CONVERSA
+- Nova coluna conversas.cliente_pode_enviar_midia.
+- Cada conversa decide individualmente se o cliente pode anexar imagem.
+- O bloqueio existe no front-end e também no PHP; alterar o HTML no navegador não burla a regra.
+- O administrador sempre mantém a possibilidade de anexar mídia.
+
+5. BARALHO CIGANO
+- Cartas receberam textura e acabamento mais artesanal, com aparência menos digital.
+- Depois do embaralhamento, a composição abre o baralho e destaca a carta revelada.
+- A explicação não fica mais exposta diretamente na página.
+- Após revelar a carta aparece “Entender o significado”.
+- O significado abre em modal temático por carta, com símbolo, palavras-chave, interpretação, reflexão e CTA para uma leitura completa.
+- Typing foi ampliado para títulos e chamadas, preservando tags como <em> e <br>.
+
+6. PRONTA ENTREGA / COMPRA
+- Criado comprar-pronto.php como fluxo único de compra direta.
+- Produtos de pronta entrega não entram mais no formulário de encomenda personalizada.
+- pedido.php também detecta produtos prontos e redireciona para compra direta como proteção adicional.
+- comprar-guia.php foi mantido apenas como rota de compatibilidade e encaminha para o novo fluxo.
+
+7. ESTABILIDADE
+- Sem alert(), confirm() ou prompt() nativos do navegador.
+- Migrações continuam não destrutivas no banco estrada_da_lua.
+- Todos os PHP e JavaScripts foram validados antes do empacotamento.
+- A finalização da pronta entrega agora revalida e bloqueia o estoque dentro de transação antes de criar o pedido, e baixa as quantidades de forma atômica.
+- A V7 final foi validada com 66 arquivos PHP, 4 arquivos JavaScript, 230 referências de rotas PHP e 8 páginas no editor de conteúdo; nenhum erro sintático, rota ausente ou chamada nativa de alert/confirm/prompt foi encontrada.

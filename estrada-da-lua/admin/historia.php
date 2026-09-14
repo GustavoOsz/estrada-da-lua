@@ -1,0 +1,14 @@
+<?php
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/schema.php';
+require_once __DIR__ . '/../includes/functions.php';
+ensureFullSchema($pdo);
+$pageTitle='História';$mensagem='';$erro='';
+$historia=$pdo->query("SELECT * FROM historia ORDER BY id ASC LIMIT 1")->fetch();
+if(!$historia){$pdo->exec("INSERT INTO historia (titulo,texto,imagem) VALUES ('Nossa História','',NULL)");$historia=$pdo->query("SELECT * FROM historia ORDER BY id ASC LIMIT 1")->fetch();}
+if($_SERVER['REQUEST_METHOD']==='POST'){try{$titulo=trim($_POST['titulo']??'');$texto=trim($_POST['texto']??'');$imagem=$historia['imagem'];if(!empty($_FILES['imagem']['name']))$imagem=uploadImagem($_FILES['imagem'],'historia');$stmt=$pdo->prepare("UPDATE historia SET titulo=?,texto=?,imagem=? WHERE id=?");$stmt->execute([$titulo,$texto,$imagem,$historia['id']]);$mensagem='História atualizada.';$historia=$pdo->query("SELECT * FROM historia ORDER BY id ASC LIMIT 1")->fetch();}catch(Throwable $e){$erro=$e->getMessage();}}
+require __DIR__.'/includes/header.php';?>
+<div class="admin-top"><div><span class="section-kicker">CONTEÚDO INSTITUCIONAL</span><h1>História da loja</h1><p>Edite o texto e a imagem que dão contexto à marca. A prévia ajuda a sentir o ritmo antes de publicar.</p></div><a class="btn btn-secondary" href="<?= BASE_URL ?>/index.php" target="_blank">Ver home ↗</a></div><?php if($mensagem): ?><div class="alert"><?= e($mensagem) ?></div><?php endif; ?><?php if($erro): ?><div class="alert alert-error"><?= e($erro) ?></div><?php endif; ?>
+<div class="admin-editor-grid"><section class="admin-editor-panel"><form method="post" enctype="multipart/form-data"><div class="form-group"><label>Título</label><input name="titulo" data-preview="historyPreviewTitle" value="<?= e($historia['titulo']) ?>" required></div><div class="form-group"><label>Texto</label><textarea name="texto" data-preview="historyPreviewText" style="min-height:250px" required><?= e($historia['texto']) ?></textarea></div><div class="form-group"><label>Imagem</label><input type="file" name="imagem" accept=".jpg,.jpeg,.png,.webp" data-image-preview="historyPreviewImage"></div><button class="btn btn-dark">Salvar alterações</button></form></section><aside class="admin-preview-panel product-admin-preview"><div class="admin-preview-head"><span>PRÉVIA AO VIVO</span><span>seção da home</span></div><div class="live-preview"><div class="preview-image-box" id="historyPreviewImage"><?php if($historia['imagem']): ?><img src="<?= BASE_URL.'/'.$historia['imagem'] ?>" alt=""><?php else: ?><span>A imagem aparece aqui</span><?php endif; ?></div><span class="preview-kicker">NOSSA HISTÓRIA</span><h2 id="historyPreviewTitle" style="font-size:2.3rem"><?= e($historia['titulo']) ?></h2><p id="historyPreviewText"><?= e($historia['texto']) ?></p></div></aside></div>
+<?php require __DIR__.'/includes/footer.php';?>

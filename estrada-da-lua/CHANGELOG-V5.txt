@@ -1,0 +1,37 @@
+ESTRADA DA LUA · V5
+
+VISUAL / UX
+- Hero da home redesenhado sem o grande visual lateral.
+- Header com logo-símbolo, perfil, atendimento e sacola.
+- Tipografia e contraste refinados, incluindo a tela de compra com fundo dourado preservado.
+- Responsividade ampliada e navegação inferior para mobile.
+- Animações mais leves, typing pontual e suporte a prefers-reduced-motion.
+- Modais e toasts próprios substituem diálogos nativos.
+
+CLIENTE
+- Conta obrigatória para compra/finalização, personalizado, leitura e chat.
+- Perfil com avatar, dados, preferências, histórico e atendimento.
+- Chat interno com anexos, não lidas, status, vínculo com pedido e alternativa WhatsApp.
+- Sacola para pronta entrega + checkout integrado ao perfil e pedidos.
+
+LOJA
+- Loja virou hub claro entre “Pronta entrega” e “Feita para você”.
+- Fluxos existentes preservados.
+
+BARALHO CIGANO
+- Novo deck artesanal em CSS.
+- Embaralhamento acionado pelo usuário.
+- Sorteio simbólico de 8 cartas com nome, palavras-chave, significado e reflexão.
+
+ADMIN
+- Atendimento com lista de conversas, não lidas, status e contexto.
+- Registro de venda em modal com AJAX e atualização das métricas do mês.
+- Editor de conteúdo mais elaborado, com prévia e campos editoriais adicionais.
+- WhatsApp configurável no painel.
+
+BANCO
+- clientes: avatar e cidade.
+- conversas e mensagens_chat.
+- novos campos editoriais.
+- conteúdo de configuração para WhatsApp.
+- migrações não destrutivas via admin/setup.php.
